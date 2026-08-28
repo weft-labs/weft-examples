@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { type FormEvent, useRef, useState } from "react";
 import type { ExtractEventResponse } from "@/lib/event";
 
 const EXAMPLE_URL = "https://luma.com/builders-day-2026";
@@ -14,7 +14,9 @@ export function EventExtractor() {
   >(null);
   const [loading, setLoading] = useState(false);
 
-  async function submit(formData: FormData) {
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
     setLoading(true);
     setError(null);
     setResult(null);
@@ -53,7 +55,7 @@ export function EventExtractor() {
 
   return (
     <div className="extractor">
-      <form action={submit} className="commandBar">
+      <form onSubmit={submit} className="commandBar">
         <label htmlFor="event-url">Public Luma URL</label>
         <div className="inputRow">
           <input
