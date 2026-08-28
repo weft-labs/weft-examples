@@ -17,6 +17,7 @@ export function EventExtractor() {
   async function submit(formData: FormData) {
     setLoading(true);
     setError(null);
+    setResult(null);
     setFailedReceipt(null);
     const url = String(formData.get("url"));
     if (pendingRequest.current?.url !== url) {
