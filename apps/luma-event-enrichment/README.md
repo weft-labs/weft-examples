@@ -52,5 +52,8 @@ Observed on 2026-08-29 with `https://luma.com/builders-day-2026`:
 - Held: `$0.0042`
 - Artifact: `356`
 
+The normalized event and receipt are archived in
+[`evidence/2026-08-29-builders-day.json`](evidence/2026-08-29-builders-day.json).
+
 A pending hold is not settled spend. The UI preserves both values so an app can
 say what happened without guessing.

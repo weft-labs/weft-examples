@@ -16,14 +16,6 @@ export async function POST(request: Request) {
     );
   }
 
-  const apiKey = process.env.WEFT_API_KEY;
-  if (!apiKey) {
-    return Response.json(
-      { error: "Set WEFT_API_KEY in .env.local before making a paid request." },
-      { status: 503 },
-    );
-  }
-
   try {
     const body = await request.json();
     const url = parseLumaUrl(body.url);
@@ -31,6 +23,16 @@ export async function POST(request: Request) {
       return Response.json(
         { error: "requestId must be a UUID." },
         { status: 400 },
+      );
+    }
+
+    const apiKey = process.env.WEFT_API_KEY;
+    if (!apiKey) {
+      return Response.json(
+        {
+          error: "Set WEFT_API_KEY in .env.local before making a paid request.",
+        },
+        { status: 503 },
       );
     }
 
